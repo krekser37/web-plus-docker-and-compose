@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@nestjs/common": "^9.0.0",
+    "@nestjs/config": "^2.3.1",
+    "@nestjs/typeorm": "^9.0.1",
+    "dotenv": "^16.0.3",
+    "typeorm": "^0.3.12"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0"
+  }
+}
