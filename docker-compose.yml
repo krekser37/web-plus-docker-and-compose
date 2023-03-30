@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  backend:
+    container_name: 'backend'
+    build: 
+      context: backend
+      dockerfile: Dockerfile
+    networks:
+      - backend
+    env_file: .env
+    restart: on-failure
+    ports:
+      -'4000:3000'
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: 'database'
+    image: "postgres:12-alpine"
+    networks:
+      - backend
+    restart: on-failure
+    env_file: .env
+    volumes:
+      -postgres_data: /var/lib/postgresql/data/pgdata
+    ports:
+      -'5432:5432'
+    environment:
+      POSTGRES_PASSWORD: example
+
+  frontend:
+    container_name: 'frontend'
+    build: 
+      context: frontend
+      dockerfile: Dockerfile
+    restart: on-failure
+    networks:
+      - frontend
+    ports:
+      -'8081:80'
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  volumes:
+    postgres_data:
+
+  networks:
+    frontend:
+    backend:

@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-RUN npm run build
+RUN npm run build 
 
 FROM nginx:1.23.1-alpine AS frontend
 # Копируем результат сборки из build-стадии

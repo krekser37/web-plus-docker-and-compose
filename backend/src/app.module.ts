@@ -15,18 +15,24 @@ import configurations from './utils/configurations';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-const { POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_USER, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_PGDATA } = process.env;
+const {
+  POSTGRES_PASSWORD,
+  POSTGRES_PORT,
+  POSTGRES_DB,
+  POSTGRES_USER,
+  POSTGRES_HOST,
+} = process.env;
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [configurations] }),
     TypeOrmModule.forRoot({
-      type: process.env.POSTGRES_PGDATA as 'postgres' || 'postgres',
-      host: process.env.POSTGRES_HOST || 'localhost',
-      port: 5432,
-      username: process.env.POSTGRES_USER || 'student',
-      password: process.env.POSTGRES_PASSWORD || 'student',
-      database: process.env.POSTGRES_DB || 'kupipodariday',
+      type: 'postgres',
+      host: POSTGRES_HOST || 'localhost',
+      port: parseInt(POSTGRES_PORT, 10) || 5432,
+      username: POSTGRES_USER || 'student',
+      password: POSTGRES_PASSWORD || 'student',
+      database: POSTGRES_DB || 'kupipodariday',
       entities: [User, Wishlist, Wish, Offer],
       synchronize: true,
     }),
