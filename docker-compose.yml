@@ -18,9 +18,9 @@ services:
   postgres:
     container_name: 'database'
     image: "postgres:12-alpine"
+    restart: on-failure
     networks:
       - backend
-    restart: on-failure
     env_file: .env
     volumes:
       - db-data:/var/lib/postgresql/data/pgdata
@@ -47,12 +47,9 @@ services:
       - 8080:8080
     depends_on:
       - postgres
-    networks:
-      - backend
 
   volumes:
     db-data:
 
   networks:
-    frontend:
     backend:
