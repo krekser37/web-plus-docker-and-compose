@@ -23,7 +23,7 @@ services:
     restart: on-failure
     env_file: .env
     volumes:
-      - db-data: /var/lib/postgresql/data/pgdata
+      - db-data:/var/lib/postgresql/data/pgdata
     ports:
       - '5432:5432'
     environment:
