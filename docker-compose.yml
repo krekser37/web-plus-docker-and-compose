@@ -48,8 +48,8 @@ services:
     depends_on:
       - postgres
 
-  volumes:
-    db-data:
+volumes:
+  db-data:
 
-  networks:
-    backend:
+networks:
+  backend:
