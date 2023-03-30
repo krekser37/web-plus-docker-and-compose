@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   backend:
@@ -9,9 +9,9 @@ services:
     networks:
       - backend
     env_file: .env
-    restart: on-failure
+    restart: unless-stopped
     ports:
-      -'4000:3000'
+      - '4000:3000'
     depends_on:
       - postgres
 
@@ -23,9 +23,9 @@ services:
     restart: on-failure
     env_file: .env
     volumes:
-      -postgres_data: /var/lib/postgresql/data/pgdata
+      - db-data: /var/lib/postgresql/data/pgdata
     ports:
-      -'5432:5432'
+      - '5432:5432'
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -36,11 +36,9 @@ services:
     build: 
       context: frontend
       dockerfile: Dockerfile
-    restart: on-failure
-    networks:
-      - frontend
+    restart: unless-stopped
     ports:
-      -'8081:80'
+      - '8081:80'
 
   adminer:
     image: adminer
@@ -53,7 +51,7 @@ services:
       - backend
 
   volumes:
-    postgres_data:
+    db-data:
 
   networks:
     frontend:
