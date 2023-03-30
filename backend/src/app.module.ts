@@ -28,7 +28,7 @@ const {
     ConfigModule.forRoot({ isGlobal: true, load: [configurations] }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: POSTGRES_HOST || 'localhost',
+      host: POSTGRES_HOST || 'database',
       port: parseInt(POSTGRES_PORT, 10) || 5432,
       username: POSTGRES_USER || 'student',
       password: POSTGRES_PASSWORD || 'student',
