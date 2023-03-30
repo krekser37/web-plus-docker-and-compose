@@ -11,4 +11,4 @@ COPY --from=builder /app/build /usr/share/nginx/html
 COPY nginx/conf.d/default.conf /etc/nginx/conf.d
 EXPOSE 8081
 # Команда для запуска
-CMD ["nginx", "-g", "daemon off"]
+CMD ["nginx", "-g", "daemon off;"]

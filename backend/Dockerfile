@@ -15,6 +15,6 @@ RUN npm ci --omit=dev && npm i -g pm2
 # Копируем результат сборки из build-стадии
 COPY --from=builder /app/dist ./dist
 COPY ./ecosystem.config.js .
-EXPOSE 4000
+EXPOSE 3000
 # Команда для запуска
 CMD ["pm2-runtime", "start", "ecosystem.config.js"]
