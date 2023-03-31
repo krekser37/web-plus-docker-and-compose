@@ -2,5 +2,5 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export default () => ({
-  jwt_secret: process.env.JWT_SECRET || 'secretkey',
+  jwt_secret: process.env.JWT_SECRET || 'secret-key',
 });
